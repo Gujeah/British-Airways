@@ -1,0 +1,13 @@
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+beautifulsoup4
+openpyxl
+requests
+jupyter 
+ipykernel
+fastapi
+uvicorn
+vaderSentiment
