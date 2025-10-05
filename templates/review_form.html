@@ -1,0 +1,38 @@
+<!-- templates/review_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>British Airways Feedback</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo"></div>
+      <h1>British Airways Feedback</h1>
+
+      {% if not submitted %}
+      <form method="post" action="/submit_review">
+        <label for="review_text">We'd love to hear about your experience:</label
+        ><br />
+        <textarea
+          name="review_text"
+          id="review_text"
+          placeholder="Tell us about your flight, crew, comfort, or anything else..."
+          required
+        ></textarea>
+        <button type="submit">Submit Feedback</button>
+      </form>
+      {% else %}
+      <div class="thank-you">
+        <h2>Thank You!</h2>
+        <p>
+          Thank you so much for your message.<br />It will help us to improve
+          our services.
+        </p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
