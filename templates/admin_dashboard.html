@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style1.css') }}" />
+  </head>
+  <body>
+    <h1>British Airways Feedback Dashboard</h1>
+
+    <div class="stats">
+      <div class="stat-box">Total Reviews: {{ total }}</div>
+      <div class="stat-box">
+        Promoters: {{ promoters }} ({{ nps_percent }}%)
+      </div>
+    </div>
+
+    <a href="/admin/export/csv" class="export-btn">📥 Download CSV</a>
+
+    <h2>Recent Feedback</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Timestamp</th>
+          <th>Review</th>
+          <th>Sentiment</th>
+          <th>Confidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for fb in feedback %}
+        <tr>
+          <td>{{ fb.id }}</td>
+          <td>{{ fb.timestamp[:19] }}</td>
+          <td>{{ fb.review_text }}</td>
+          <td
+            class="{% if fb.is_likely %}positive{% else %}negative{% endif %}"
+          >
+            {% if fb.is_likely %} Likely{% else %} Not Likely{% endif %}
+          </td>
+          <td>{{ "%.2f"|format(fb.confidence) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
